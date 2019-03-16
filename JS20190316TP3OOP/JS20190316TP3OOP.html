@@ -151,7 +151,6 @@
         sophie.setSound("Meow");
         sophie.setMode("Crazy");
 
-
         document.write(sophie.getName() + "<br />");
         document.write(sophie.getOwner() + "<br />");
         document.write(sophie.getSound() + "<br />");
@@ -160,7 +159,44 @@
 
         // *** *** instanceof: Check to see if an object was instantiated or based off of another class
 
-        document.write(sophie instanceof Cat);
+        document.write((sophie instanceof Cat) + "<br />");
+        document.write("<br />");
+
+        document.write((typeof (Cat)) + "<br />"); // Cat is a function not a class
+        document.write("<br />");
+
+        document.write((typeof (sophie)) + "<br />"); // sophie is an object not a class
+        document.write("<br />");
+
+        // *** *** Method Overloading: create multiple different versions/methods that have a 
+            //different amount of attributes
+            // Allows multiple methods to be called based on how many attributes are sent
+
+        setStuff(newName)                          // one attribute called
+        setStuff(newName, newSound)                // two attritutes called
+        setStuff(newName, newSound, newOwner)      // three attributes called
+
+        // forcing method overloading (normally not done in JS)
+
+        Cat.prototype.setStuff = function (newName, newSound, newOwner)
+        {
+            if ((typeof newName != 'undefined') && (typeof newSound != 'undefined') && (typeof newOwner != 'undefined'))
+            {
+                Cat.prototype.setStuff = function (newName, newSound, newOwner)
+                {
+
+                }
+            }
+            else {
+                document.write("Please enter a valid mode");
+            }
+        }
+
+
+
+
+
+
 
     </script>
 
