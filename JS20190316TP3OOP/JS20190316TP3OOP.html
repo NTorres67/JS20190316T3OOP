@@ -26,9 +26,11 @@
     <!-- Encapsulation: grouping of properties and the methods needed to manipulate those properties.
             To change properties, you will have to do it through the use of functions -->
 
+    <!--  -->
+
     <script>
 
-        // *** Create Animal Object
+        // *** Create Object Type = Animal
 
         function Animal()
         {
@@ -92,19 +94,69 @@
             return this.sound;
         }
 
-        // *** Create Additional Animal Objects ==> has access to the function and methods above
+        // *** Create Additional Ojbect(dog) of type(Animal) ==> has access to the function and methods above
 
         var dog = new Animal();
 
         dog.setName("Spot");
         dog.setOwner("Paul");
-        dog.setSound();
+        dog.setSound("Woof");
 
         document.write(dog.getName() + "<br />");
         document.write(dog.getOwner() + "<br />");
         document.write(dog.getSound() + "<br />");
+        document.write("<br />");
+
+        // *** *** Inheritance: Creating a new class while inheriting properties and methods from another class
+
+        function Cat()
+        {
+            // *** *** this: is a reference to the next cat object that you create;                 
+                // All of the newly created objects are assigned as the value of this
+
+            // *** *** Constructor: the function that is run everytime you create a new Animal object
+                // Creates all of the properties and methods for the new class and objects
+                // Forces the original animal constructor to be executed
+
+            // *** *** superclass: The class you want your new class to inherit from
+                // 
+
+            Animal.call(this);
+            this.mode = "Happy";
+        }
+
+        Cat.prototype = new Animal();
+        Cat.prototype.constructor = Cat;
+
+        Cat.prototype.getMode = function()
+        {
+            return this.mode;
+        }
+
+        Cat.prototype.setMode = function (newMode)
+        {
+            if (typeof newMode != 'undefined') {
+                this.mode = newMode;
+            }
+            else
+            {
+                document.write("Please enter a valid mode");
+            }
+        }
+
+        var sophie = new Cat;
+
+        sophie.setName("Sophie");
+        sophie.setOwner("Emma");
+        sophie.setSound("Meow");
+        sophie.setMode("Crazy");
 
 
+        document.write(sophie.getName() + "<br />");
+        document.write(sophie.getOwner() + "<br />");
+        document.write(sophie.getSound() + "<br />");
+        document.write(sophie.getMode() + "<br />");
+        document.write("<br />");
 
     </script>
 
